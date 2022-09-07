@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz/screen/screen_result.dart';
 import 'package:quiz/screen/widget_candidate.dart';
 import '../model/model_quiz.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -98,7 +99,8 @@ class _QuizScreenState extends State<QuizScreen> {
                       : Text('다음 문제', style: TextStyle(color: Colors.white)),
                   style: ElevatedButton.styleFrom(primary: Colors.deepPurple),
                   onPressed: _answers[_currentIndex] == -1 ? null : () {
-                    if (_currentIndex == widget.quizs!.length) {
+                    if (_currentIndex == widget.quizs!.length -1 ) {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => ResultScreen(answers: _answers, quizs: widget.quizs!)));
                     } else {
                       _answerState = [false, false, false, false];
                       _currentIndex += 1;
