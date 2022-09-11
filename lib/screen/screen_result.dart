@@ -4,8 +4,8 @@ import 'package:quiz/screen/screen_home.dart';
 import '../model/model_quiz.dart';
 
 class ResultScreen extends StatelessWidget {
-  List<int>? answers;
-  List<Quiz>? quizs;
+  List<int> answers;
+  List<Quiz> quizs;
 
   ResultScreen({this.answers, this.quizs});
 
@@ -16,7 +16,7 @@ class ResultScreen extends StatelessWidget {
     double height = screenSize.height;
 
     int score = 0;
-    for (int i = 0; i < quizs!.length; i++) {
+    for (int i = 0; i < quizs.length; i++) {
       score += 1;
     }
 
@@ -66,7 +66,7 @@ class ResultScreen extends StatelessWidget {
                       ),
                       Expanded(child: Container()),
                       Text(
-                        score.toString() + '/' + quizs!.length.toString(),
+                        score.toString() + '/' + quizs.length.toString(),
                         style: TextStyle(
                             fontSize: width * 0.21,
                             fontWeight: FontWeight.bold,

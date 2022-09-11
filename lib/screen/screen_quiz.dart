@@ -5,7 +5,7 @@ import '../model/model_quiz.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 class QuizScreen extends StatefulWidget {
-  List<Quiz>? quizs;
+  List<Quiz> quizs;
 
   QuizScreen({this.quizs});
 
@@ -39,9 +39,9 @@ class _QuizScreenState extends State<QuizScreen> {
             controller: _controller,
             physics: NeverScrollableScrollPhysics(),
             loop: false,
-            itemCount: widget.quizs!.length,
+            itemCount: widget.quizs.length,
             itemBuilder: (BuildContext context, int index) {
-              return _buildQuizCard(widget.quizs![index], width, height);
+              return _buildQuizCard(widget.quizs[index], width, height);
             },
           ),
         ),
@@ -70,7 +70,7 @@ class _QuizScreenState extends State<QuizScreen> {
             width: width * 0.8,
             padding: EdgeInsets.only(top: width * 0.012),
             child: Text(
-              quiz.title!,
+              quiz.title,
               textAlign: TextAlign.center,
               maxLines: 2,
               style: TextStyle(
@@ -94,13 +94,13 @@ class _QuizScreenState extends State<QuizScreen> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
                 child: ElevatedButton(
-                  child: _currentIndex == widget.quizs!.length - 1
+                  child: _currentIndex == widget.quizs.length - 1
                       ? Text('결과 보기', style: TextStyle(color: Colors.white))
                       : Text('다음 문제', style: TextStyle(color: Colors.white)),
                   style: ElevatedButton.styleFrom(primary: Colors.deepPurple),
                   onPressed: _answers[_currentIndex] == -1 ? null : () {
-                    if (_currentIndex == widget.quizs!.length -1 ) {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => ResultScreen(answers: _answers, quizs: widget.quizs!)));
+                    if (_currentIndex == widget.quizs.length -1 ) {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => ResultScreen(answers: _answers, quizs: widget.quizs)));
                     } else {
                       _answerState = [false, false, false, false];
                       _currentIndex += 1;
@@ -121,7 +121,7 @@ class _QuizScreenState extends State<QuizScreen> {
     for (int i = 0; i < 4; i++) {
       _children.add(CandWidget(
           index: i,
-          text: quiz.candidates![i],
+          text: quiz.candidates[i],
           width: width,
           answerState: _answerState[i],
           tap: () {
